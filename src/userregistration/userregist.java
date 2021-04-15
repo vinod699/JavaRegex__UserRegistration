@@ -1,6 +1,6 @@
 package userregistration;
-        import java.util.Scanner;
-        import java.util.regex.*;
+import java.util.Scanner;
+import java.util.regex.*;
 
 //@Description User Registration System needs to ensure all validations are in place during the User Entry
 
@@ -9,6 +9,7 @@ public class UserRegist{
     private static String lastName;
     private static String email;
     private static String password;
+    private static String mobile_no;
     Scanner sc=new Scanner(System.in);
 
     //Method to get First Name
@@ -28,11 +29,20 @@ public class UserRegist{
         return lname;
     }
     //Method to get Email
-    public String getEmail() {
+    public String getEmail()
+    {
         System.out.println("*******EMAIL ID *******\n Email has 3 mandatory parts (abc, bl\r\n precise @ and . positions )\n");
         System.out.println("Enter a valid Email:");
         String email=sc.nextLine();
         return email;
+    }
+    //Method to get mobile_number
+    public String getMobileNo()
+    {
+        System.out.println("*******MOBILE NUMBER*******\n * Mobile Format - Country code follow by space and 10 digit number\n");
+        System.out.println("Enter a valid MOBILE NUMBER :");
+        String mobile_no=sc.nextLine();
+        return mobile_no;
     }
 
     //Method to check whether First name is valid
@@ -73,7 +83,20 @@ public class UserRegist{
         {
             System.out.println(emailID+" is not a valid Email Id");
         }
+    }
+    //Method to check whether mobile_no is valid
+    public void mobilevalidation(String mobile) {
+        String regexmobile = "[9]{1}[1]{1}[\s]{1}[0-9]{10}";
+        boolean mobileValidator = mobile.matches(regexmobile);
+        if(mobileValidator)
+        {
+            System.out.println(mobile+" is a valid Mobile Number");
+        }
+        else
+        {
+            System.out.println(mobile+" is not a valid Mobile Number");
 
+        }
     }
 
 
@@ -85,6 +108,8 @@ public class UserRegist{
         usereg.validateLastName(lastName);
         email=usereg.getEmail();
         usereg.validateEmail(email);
+        mobile_no=usereg.getMobileNo();
+        usereg.mobilevalidation(mobile_no);
     }
 
 }
