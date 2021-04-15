@@ -4,7 +4,7 @@ import java.util.regex.*;
 
 //@Description User Registration System needs to ensure all validations are in place during the User Entry
 
-public class UserRegist{
+public class UserRegist {
     private static String firstName;
     private static String lastName;
     private static String email;
@@ -44,6 +44,15 @@ public class UserRegist{
         String mobile_no=sc.nextLine();
         return mobile_no;
     }
+    //Method to get password()
+    public String getPassword()
+    {
+        System.out.println("*******PASSWORD*******\n RULE-1 : Minimum 8 Characters \n RULE-2 : Should have at least Upper Case \n RULE-3 : Should have at least 1 numeric number in the password  the password \n RULE-4 : Has exactly 1 Special Character\n" );
+        System.out.println("Enter a valid Password : ");
+        String password=sc.nextLine();
+        return password;
+    }
+
 
     //Method to check whether First name is valid
     public void validateFirstName(String name) {
@@ -98,6 +107,21 @@ public class UserRegist{
 
         }
     }
+    //Method to check whether password is valid
+    public void passwordValidation(String password)
+    {
+        String regexPassword = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])((?=.+[!$%^&*(),.:@#^]){1}).{8,}$";
+        boolean passwordValidator = password.matches(regexPassword);
+        if(passwordValidator)
+        {
+            System.out.println(password+" is a valid Password \n*****ALL RULES ARE PASSED*****\n");
+        }
+        else
+        {
+            System.out.println(password+" is not a valid Password");
+
+        }
+    }
 
 
     public static void main(String[] args) {
@@ -110,6 +134,8 @@ public class UserRegist{
         usereg.validateEmail(email);
         mobile_no=usereg.getMobileNo();
         usereg.mobilevalidation(mobile_no);
+        password=usereg.getPassword();
+        usereg.passwordValidation(password);
     }
 
 }
