@@ -4,7 +4,7 @@ import java.util.regex.*;
 
 //@Description User Registration System needs to ensure all validations are in place during the User Entry
 
-public class UserRegist {
+public class UserRegist{
     private static String firstName;
     private static String lastName;
     private static String email;
@@ -122,6 +122,21 @@ public class UserRegist {
 
         }
     }
+    //Method to check whether the email-samples are valid
+    public void validateEmailSamples(String emailID) {
+        String regexemailId = "\"^[_A-Za-z0-9-\\\\+]+(\\\\.[_A-Za-z0-9-]+)*@\" + \"[A-Za-z0-9-]+(\\\\.[A-Za-z0-9]{2,6}){0,1}(\\\\.[A-Za-z]{2,3})$\"";
+
+        boolean emailIdValidator = emailID.matches(regexemailId);
+        if(emailIdValidator)
+        {
+            System.out.println(emailID+" is a valid Email Id");
+        }
+        else
+        {
+            System.out.println(emailID+" is not a valid Email Id");
+        }
+    }
+
 
 
     public static void main(String[] args) {
@@ -136,6 +151,8 @@ public class UserRegist {
         usereg.mobilevalidation(mobile_no);
         password=usereg.getPassword();
         usereg.passwordValidation(password);
+        email=usereg.getEmail();
+        usereg.validateEmailSamples(email);
     }
 
 }
